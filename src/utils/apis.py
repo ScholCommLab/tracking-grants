@@ -31,14 +31,6 @@ class NCBIAPI:
             "tool": "ScholCommLab Military Grants",
         }
 
-    def query(self, dois):
-        self.params["ids"] = ",".join(dois)
+    def query(self, doi):
+        self.params["ids"] = [doi]
         return requests.get(self.ncbi_api, params=self.params)
-
-
-class AltmetricAPI:
-    def __init__(self, secret_key):
-        self.key = secret_key
-
-    def query(self):
-        NotImplemented
