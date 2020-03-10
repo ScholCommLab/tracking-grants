@@ -53,8 +53,8 @@ def main():
                 if ncbi_id in r:
                     metadata.loc[ix, ncbi_id] = r[ncbi_id]
 
-    logger.info(f"Writing NCBI results to `{metadata_}`")
-    metadata.to_csv(metadata_)
+    logger.info(f"Writing NCBI results to `{metadata_file}`")
+    metadata.to_csv(metadata_file)
 
 
 if __name__ == "__main__":
@@ -63,7 +63,6 @@ if __name__ == "__main__":
 
     ncbi_file = data_dir / "interim/_ncbi.csv"
     metadata_file = data_dir / "processed/article_metadata.csv"
-    metadata_ = data_dir / "processed/metadata_.csv"
 
     load_dotenv(find_dotenv())
 
