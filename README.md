@@ -15,8 +15,8 @@ Make sure that the following programs are available on your machine.
 1. Setup virtualenv within the project folder by running `poetry install`. This will setup a isolated development environment and install all required dependencies.
 
 2. Fill in your altmetrics key in a file called `.env` in the following format
-
-    ```
+  
+    ```bash
     altmetric_key = [your_key]
     ```
 
