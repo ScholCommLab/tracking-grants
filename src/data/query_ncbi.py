@@ -17,7 +17,7 @@ def query_ncbi(metadata):
     ncbi = NCBIAPI()
 
     results = {}
-    dois = metadata.DOI.dropna().iloc[0:10]
+    dois = metadata.DOI.dropna()
     for ix, doi in tqdm(dois.iteritems(), total=len(dois)):
         r = ncbi.query(doi)
 
