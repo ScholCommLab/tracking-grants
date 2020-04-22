@@ -1,0 +1,3 @@
+[submodule "reference_matcher"]
+	path = reference_matcher
+	url = https://gitlab.com/crossref/search_based_reference_matcher
