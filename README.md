@@ -66,4 +66,6 @@ Output: Reports (`results/*.html`)
 
 ## Acknowledgement
 
-Project based on the [cookiecutter data science project template](https://drivendata.github.io/cookiecutter-data-science/). #cookiecutterdatascience.
+We want to thank [Dominika Tkaczyk](https://gitlab.com/dtkaczyk) for all the help. We are also using [this project](https://gitlab.com/crossref/search_based_reference_matcher) to run the advanced reference matching methods described in [this blog post(https://www.crossref.org/blog/matchmaker-matchmaker-make-me-a-match/)].
+
+This project is based on the [cookiecutter data science project template](https://drivendata.github.io/cookiecutter-data-science/). #cookiecutterdatascience.
