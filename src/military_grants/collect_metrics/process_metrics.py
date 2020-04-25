@@ -4,7 +4,7 @@ from military_grants import articles_f, altmetric_f, wos_f
 
 
 def process_metrics():
-
+    pass
 
 
 def run():

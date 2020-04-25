@@ -7,7 +7,7 @@ from .write_articles import run as write_articles
 
 
 def run_all():
-    logger.info("=== Processing all articles")
+    logger.info("Processing all articles")
 
     export_refs()
     match_dois()

@@ -34,7 +34,7 @@ def query_altmetric(articles_f, altmetric_f):
 
 def run():
     if not altmetric_f.exists():
-        logger.info("Collecting altmetric")
+        logger.info("\tCollecting altmetric")
         query_altmetric(articles_f, altmetric_f)
     else:
-        logger.info("Altmetrics have been collected already.")
+        logger.info("\tSkipped: Altmetrics have been collected already.")

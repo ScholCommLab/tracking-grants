@@ -46,4 +46,4 @@ def run():
         logger.info("\tWriting matched articles and reference metadata.")
         export_articles(references_f, crossref_f, articles_f)
     else:
-        logger.info("\tArticles and references have already been exported.")
+        logger.info("\tSkipped: Articles and references have already been exported.")

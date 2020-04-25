@@ -7,7 +7,7 @@ from .process_metrics import run as process_metrics
 
 
 def run_all():
-    logger.info("=== Processing all articles")
+    logger.info("Processing all articles")
 
     collect_altmetrics()
     collect_wos()

@@ -43,7 +43,7 @@ def run():
     excel_files = input_folder.glob("*.xlsx")
 
     if not Path(references_f).exists():
-        logger.info("Merge excel spreadsheets and export to CSV")
+        logger.info("\tMerge excel spreadsheets and export to CSV")
         process_excel(excel_files, references_f)
     else:
-        logger.info("Skipping: Excel files has already been processed")
+        logger.info("\tSkipped: Excel files has already been processed")

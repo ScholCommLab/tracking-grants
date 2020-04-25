@@ -22,4 +22,4 @@ def run():
         logger.info("\tMatching references with DOIs on Crossref")
         match_refs_with_dois(one_ref_per_line, crossref_f)
     else:
-        logger.info("\tSkipping. References have been already matched with DOIs.")
+        logger.info("\tSkipped: References have been already matched with DOIs.")

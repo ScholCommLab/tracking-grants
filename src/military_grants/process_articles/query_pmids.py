@@ -54,7 +54,7 @@ def run():
     articles = pd.read_csv(articles_f, index_col="article_id")
 
     if "pmid" not in articles.columns:
-        logger.info("Enriching articles with Pubmed IDs.")
+        logger.info("\tEnriching articles with Pubmed IDs.")
         query_pmids(articles_f)
     else:
-        logger.info("Dataset already contains pmid columns.")
+        logger.info("\tSkipped: Dataset already contains pmid columns.")

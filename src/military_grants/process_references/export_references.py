@@ -21,4 +21,4 @@ def run():
         logger.info("\tCreating temp file with one reference per line.")
         process_input(references_f, one_ref_per_line)
     else:
-        logger.info("\tSkipping: Temporary file with one reference per line exists.")
+        logger.info("\tSkipped: Temporary file with one reference per line exists.")
