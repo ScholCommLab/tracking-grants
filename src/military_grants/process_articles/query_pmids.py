@@ -6,7 +6,7 @@ import pandas as pd
 import requests
 from tqdm.auto import tqdm
 
-from military_grants import ARTICLES, data_dir
+from military_grants import articles_f
 from military_grants.utils.logging import logger
 
 
@@ -51,7 +51,6 @@ def query_pmids(articles_f):
 
 
 def run():
-    articles_f = data_dir / ARTICLES
     articles = pd.read_csv(articles_f, index_col="article_id")
 
     if "pmid" not in articles.columns:

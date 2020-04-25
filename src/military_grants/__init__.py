@@ -1,5 +1,6 @@
 # -*- coding: <utf-8 -*-
 from pathlib import Path
+import os
 
 from dotenv import load_dotenv, find_dotenv
 import seaborn as sns
@@ -10,24 +11,34 @@ sns.set(rc={"figure.figsize": (8, 5)})
 
 config = load_dotenv(find_dotenv())
 
-# Default locations
-project_dir = Path(__file__).resolve().parents[2]
-data_dir = project_dir / "data"
+altmetric_api_key = os.getenv("ALTMETRIC_API_KEY")
+# Altmetric call limit
+if not altmetric_api_key:
+    altmetric_call_limit = 1
+else:
+    altmetric_call_limit = 10
 
-REFERENCE_MATCHER = (
+# Directories
+project_dir = Path(__file__).resolve().parents[2]
+
+# External software
+reference_matcher = (
     project_dir / "crossref/search-based-ref-matching-1.1-jar-with-dependencies.jar"
 )
 
-# External files
-EXCEL = "external/"
+# Data
+data_dir = project_dir / "data"
+
+# External data
+input_folder = data_dir / "external"
 
 # Temporary files
-ONE_REF_PER_LINE = "interim/one_ref_per_line.txt"
-CROSSREF = "interim/reference_match_output.json"
-ALTMETRIC = "interim/altmetric.csv"
-WOS = "interim/wos.csv"
+one_ref_per_line = data_dir / "interim/one_ref_per_line.txt"
+crossref_f = data_dir / "interim/reference_match_output.json"
+altmetric_f = data_dir / "interim/altmetric.json"
+wos_f = data_dir / "interim/wos.json"
 
 # Processed files
-REFERENCES = "processed/references.csv"
-ARTICLES = "processed/articles.csv"
-METRICS = "processed/metrics.csv"
+references_f = data_dir / "processed/references.csv"
+articles_f = data_dir / "processed/articles.csv"
+metrics_f = data_dir / "processed/metrics.csv"

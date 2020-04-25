@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 
 from military_grants import data_dir
-from military_grants import EXCEL, REFERENCES
+from military_grants import input_folder, references_f
 from military_grants.utils.logging import logger
 
 
@@ -40,10 +40,7 @@ def process_excel(excel_files: list, input_f: Path):
 
 
 def run():
-    input_folder = data_dir / EXCEL
     excel_files = input_folder.glob("*.xlsx")
-
-    references_f = data_dir / REFERENCES
 
     if not Path(references_f).exists():
         logger.info("Merge excel spreadsheets and export to CSV")

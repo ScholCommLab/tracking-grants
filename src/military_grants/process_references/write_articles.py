@@ -2,7 +2,7 @@
 import json
 import pandas as pd
 from military_grants.utils.logging import logger
-from military_grants import REFERENCES, CROSSREF, ARTICLES, data_dir
+from military_grants import references_f, crossref_f, articles_f
 
 
 def export_articles(references_f, matches_f, articles_f):
@@ -42,12 +42,8 @@ def export_articles(references_f, matches_f, articles_f):
 
 
 def run():
-    references_f = data_dir / REFERENCES
-    articles_f = data_dir / ARTICLES
-    matches_f = data_dir / CROSSREF
-
     if not articles_f.exists():
         logger.info("\tWriting matched articles and reference metadata.")
-        export_articles(references_f, matches_f, articles_f)
+        export_articles(references_f, crossref_f, articles_f)
     else:
         logger.info("\tArticles and references have already been exported.")
