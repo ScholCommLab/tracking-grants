@@ -19,50 +19,63 @@ Setup virtualenv within the project folder by running `poetry install`. This wil
 
 **1. Export references from Excel sheets.**
 
-Input: Folder with excel sheets (`data/external/input`)
-Output: File with all references and grant IDs (`data/external/references.csv`)
+- Input: Folder with excel sheets (`data/external/input`)
+- Output: File with all references and grant IDs (`data/external/references.csv`)
 
 ### Process references
 
 **2. Match references with DOIs**
 
-Input: File with all references and grant IDs (`data/external/references.csv`)
-Temporary: File with one reference per line (`data/interim/references.txt`)
-Temporary: File containing all results from Crossref (`data/interim/reference_matching_results.json`)
-Output: Articles with DOIs that are matched to references (`data/processed/articles.csv`)
+- Input
+  - File with all references and grant IDs (`data/external/references.csv`)
+- Output
+  - Articles with DOIs that are matched to references (`data/processed/articles.csv`)
+  - *Interim:* File with one reference per line (`data/interim/references.txt`)
+  - *Interim:* File containing all results from Crossref (`data/interim/reference_matching_results.json`)
 
 ### Process articles
 
 **3. Enrich DOIs with Pubmed IDs**
 
-Input: Articles (`data/processed/articles.csv`)
-Output: Articles (`data/processed/articles.csv`)
+- Input
+  - Articles (`data/processed/articles.csv`)
+- Output
+  - Articles (`data/processed/articles.csv`)
 
 ### Collect metrics
 
 **4a. Collect altmetrics**
 
-Input: Articles (`data/processed/articles.csv`)
-Temporary: Response from Altmetric (`data/interim/respose_altmetric.csv`)
+- Input
+  - Articles (`data/processed/articles.csv`)
+- Output
+  - *Interim:* Response from Altmetric (`data/interim/respose_altmetric.csv`)*
 
 **4b. Collect citations and disciplinary information**
 
-Input: Articles (`data/processed/articles.csv`)
-Temporary: Response from WoS (`data/interim/respose_wos.csv`)
+- Input
+  - Articles (`data/processed/articles.csv`)
+- Output
+  - *Interim:* Response from WoS (`data/interim/respose_wos.csv`)
 
 **4c. Combine results**
 
-Input: Results from Altmetric & WoS (`data/interim/respose_altmetric.csv`, `data/interim/respose_wos.csv`)
-Output: Metrics (`data/processed/metrics.csv`)
-
+- Input
+  - Results from Altmetric (`data/interim/respose_altmetric.csv`)
+  - Results from WoS (`data/interim/respose_wos.csv`)
+- Output
+  - Metrics (`data/processed/metrics.csv`)
 
 ### Create results
 
 **5. Create results**
 
-Input: Articles & metrics (`data/processed/metrics.csv`, `data/processed/articles.csv`)
-Input: Report template (`notebooks/reports/*.ipynb`)
-Output: Reports (`results/*.html`)
+- Input
+  - Articles (`data/processed/articles.csv`)
+  - Metrics (`data/processed/metrics.csv`)
+  - Report template (`notebooks/reports/*.ipynb`)
+- Output
+  - Reports (`results/*.html`)
 
 ## Acknowledgement
 
