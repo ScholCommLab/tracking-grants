@@ -1,9 +1,7 @@
 # -*- coding: <utf-8 -*-
-import os
 from pathlib import Path
 
 import seaborn as sns
-from dotenv import find_dotenv, load_dotenv
 
 # Plotting style
 sns.set_style("darkgrid")
@@ -26,4 +24,3 @@ WOS = "interim/wos.csv"
 # Processed files
 ARTICLES = "processed/articles.csv"
 METRICS = "processed/metrics.csv"
-
