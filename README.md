@@ -2,16 +2,30 @@
 
 > Exploration of publications funded through military grant programs
 
-## Requirements
+## Minimum requirements
 
-Make sure that the following programs are available on your machine.
+- [Python 3.6](https://www.python.org/downloads/)
+- [Java](https://java.com/en/download/) (required to run reference matching)
 
-- Python 3.6
-- Poetry
+I strongly recommend to use [Poetry](https://python-poetry.org/docs/) to manage dependencies. Furthermore, Poetry provides entry points to comfortably run processing pipelines.
 
 ## Instructions
 
-Setup virtualenv within the project folder by running `poetry install`. This will setup a isolated development environment and install all required dependencies.
+To get started simply execute
+
+    git clone https://github.com/ScholCommLab/military-grants
+    cd military-grants
+    poetry install
+
+This will create an isolated virtual environment in your project folder and install all required dependencies.
+
+The processing pipeline is available as follows:
+
+1. `poetry run preprocessing`
+2. `poetry run references`
+3. `poetry run articles`
+4. `poetry run metrics`
+5. `poetry run reports`
 
 ## Processing pipeline
 
