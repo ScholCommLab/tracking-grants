@@ -31,8 +31,8 @@ def process_excel(excel_files: list, input_f: Path):
 
     # Reindex and rename columns
     pubs.index = range(0, len(pubs))
-    pubs.index.name = "article_id"
-    pubs.columns = ["proposal_id", "unstruct_citation", "type"]
+    pubs.index.name = "reference_id"
+    pubs.columns = ["grant_id", "reference", "type"]
 
     # Write unique references to files
     logger.debug("Writing cleaned publication data to CSV")
@@ -46,7 +46,7 @@ def run():
     references_f = data_dir / REFERENCES
 
     if not Path(references_f).exists():
-        logger.info("Process Excel file")
+        logger.info("Merge excel spreadsheets and export to CSV")
         process_excel(excel_files, references_f)
     else:
-        logger.info("Skipping: Excel file has already been processed")
+        logger.info("Skipping: Excel files has already been processed")
