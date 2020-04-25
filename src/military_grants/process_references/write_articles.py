@@ -21,8 +21,11 @@ def export_articles(references_f, matches_f, articles_f):
     merged = merged[merged.DOI.notna()]
     merged.shape
 
-    # Choose one reference per DOI (randomly the first one) to get rid of typos in the reference
-    articles = merged.reindex(merged.DOI.drop_duplicates().index)[['DOI', 'reference', 'score', 'type']]
+    # Choose one reference per DOI (randomly the first one)
+    # to get rid of typos in the reference
+    articles = merged.reindex(merged.DOI.drop_duplicates().index)[
+        ["DOI", "reference", "score", "type"]
+    ]
     articles.shape
 
     # Deduplicate. Articles might have multiple references because of multiple grants
