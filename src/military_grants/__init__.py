@@ -29,8 +29,8 @@ reference_matcher = (
 # Data
 data_dir = project_dir / "data"
 
-# External data
-input_folder = data_dir / "external"
+# Raw data from CDMRP
+input_folder = data_dir / "raw"
 
 # Temporary files
 one_ref_per_line = data_dir / "interim/one_ref_per_line.txt"
