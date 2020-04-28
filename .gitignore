@@ -138,4 +138,8 @@ dmypy.json
 .pytype/
 
 # exclude data from source control by default
-/data/
+data/processed/*
+!data/processed/.gitkeep
+
+data/interim/*
+!data/interim/.gitkeep

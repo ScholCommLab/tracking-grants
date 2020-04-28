@@ -1,0 +1,74 @@
+key,altmetric_key,details
+title,title,Title of the publication
+doi,doi,Relevant DOI
+pmid,pmid,Relevant PMID
+pmc,pmc,Relevant PMC
+,tq,Title of mentions
+,uri,URL for a captured idenfier (e.g doi.org/xxx)
+,isbns,Relevant ISBN(s)
+,altmetric_jid,Internal number assigned to each journal
+,issns,Relevant ISSN(s)
+journal,journal,Name of publication journal
+,cohorts,Groups of users who've mentioned  the publication on Twitter
+,pub,Members of the Public
+,sci,Scientists
+,com,Science Communicators
+,doc,Practitioners 
+,abstract,Full abstract for the article
+,abstract_source,Source for the abstract (e.g PUBMED)
+authors,authors,Author names
+type,type,"Type of publication (e.g article, dataset etc.)"
+,handles,Relevant Handle(s)
+altmetric_id,altmetric_id,ID associated with publication. Not a persistent identifier; may change when duplicate instances of the same research output are merged in our database.
+is_oa,is_oa,"Is the article Open Access? Not good data, came from Scopus in 2011 and never updated"
+,publisher_subjects,Subjects for publication set by the publisher
+,context_journal_count,Number of publicaions in this journal
+,context_journal_mean,Mean score for publications in this journal
+,context_journal_rank,Score in context rank within publications in the journal
+,context_journal_pct,% of publications from this journal with fewer mentions
+,context_journal_higher_than,# of publications from this journal with fewer mentions
+,context_similar_age_3m_count,Number of publications in this time period
+,context_similar_age_3m_mean,Mean score for publications in this time period
+,context_similar_age_3m_rank,Score in context rank within publications in this time period
+,context_similar_age_3m_pct,% of publications from this time period with fewer mentions
+,context_similar_age_3m_higher_than,# of publications from this time period with fewer mentions
+,context_similar_age_journal_3m_count,Number of publications in this journal in this time period
+,context_similar_age_journal_3m_mean,Mean score for publications in this journal in this time period
+,context_similar_age_journal_3m_rank,Score in context rank within publications in the journal in this time period
+,context_similar_age_journal_3m_pct,% of publications from this journal with fewer mentions in this time period
+,context_similar_age_journal_3m_higher_than,# of publications from this journal with fewer mentions in this time period
+fb_mentions,cited_by_fbwalls_count,Number of the pages that have shared on Facebook
+n_blogs,cited_by_feeds_count,Number of blogs that have mentioned the publication
+google_mentions,cited_by_gplus_count,Number of the accounts that have shared on Google+
+n_news,cited_by_msm_count,Number of the news sources that have mentioned the publication
+n_posts,cited_by_posts_count,"A ""post"" is any online document that links to one or more research objects (i.e. a post is a mention or a group of mentions). This field contains the number of distinct posts that include one or more mentions of the research object in question."
+reddit_threads,cited_by_rdts_count,Number of Reddit threads posted about this publication
+n_twitter_accounts,cited_by_tweeters_count,Number of the twitter accounts that have tweeted this publication
+n_youtube_channels,cited_by_videos_count,Number of the Youtube/Vimeo channels
+cited_by_sum,cited_by_accounts_count,"The sum of all ""cited_by"" entries (profiles per data source)"
+last_updated,last_updated,Last time the score changed. In UNIX
+score,score,Current score
+,history,History of the Altmetric Attention Score for the publication
+,1y,Score change in this time period
+,6m,Score change in this time period
+,3m,Score change in this time period
+,1m,Score change in this time period
+,1w,Score change in this time period
+,6d,Score change in this time period
+,5d,Score change in this time period
+,4d,Score change in this time period
+,3d,Score change in this time period
+,2d,Score change in this time period
+,1d,Score change in this time period
+,at,Current Altmetric Attention Score
+,url,URL to publication page
+,added_on,Date when Altmetric first captured attention. In UNIX.
+published_on,published_on,Publication date. In UNIX
+,subjects,ERA subjects associated with the publication
+,scopus_subjects,"Subjects associated with the publication in SCOPUS. Not good data, added it in 2011 and never removed"
+citeulike_readers,citeulike,Readers in citeulike
+mendeley_readers,mendeley,Readers in Mendeley
+connotea_readers,connotea,Readers in Connotea
+total_readers,readers_count,Total Reader Counts
+,images,Link to png version of the donut
+,details_url,URL to relevant Altmetric Details Page
