@@ -8,7 +8,9 @@ from military_grants.utils.logging import logger
 
 def process_metrics(altmetric_f, wos_f, metrics_f):
     """Merge data from Altmetric and WoS."""
-    altmetric = pd.DataFrame.from_dict(json.loads(altmetric_f.read_text()), orient="columns").T
+    altmetric = pd.DataFrame.from_dict(
+        json.loads(altmetric_f.read_text()), orient="columns"
+    ).T
     wos = pd.read_csv(wos_f, index_col="doi")
 
     altmetric.join(wos).to_csv(metrics_f)
