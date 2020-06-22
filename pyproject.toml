@@ -28,14 +28,18 @@ flake8 = "^3.7.9"
 Sphinx = "^2.4.3"
 coverage = "^5.0.3"
 ipykernel = "^5.1.4"
+ipywidgets = "^7.5.1"
 
 [tool.poetry.scripts]
+all = "tracking_grants.__main__:run"
+
 preprocessing = "tracking_grants.preprocessing.main:run_all"
 references = "tracking_grants.process_references.main:run_all"
 articles = "tracking_grants.process_articles.main:run_all"
 metrics = "tracking_grants.collect_metrics.main:run_all"
 reports = "tracking_grants.reports.main:run_all"
-all = "tracking_grants.__main__:run"
+
+cr_metadata = "tracking_grants.3_enrich_articles.crossref_metadata:run"
 
 [build-system]
 requires = ["poetry>=0.12"]
