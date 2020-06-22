@@ -24,7 +24,7 @@ def export_articles(references_f, matches_f, articles_f):
     # Choose one reference per DOI (randomly the first one)
     # to get rid of typos in the reference
     articles = merged.reindex(merged.DOI.drop_duplicates().index)[
-        ["DOI", "reference", "score", "type"]
+        ["DOI", "reference", "score", "program"]
     ]
     articles.shape
 

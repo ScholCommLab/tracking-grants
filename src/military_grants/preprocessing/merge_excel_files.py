@@ -19,7 +19,7 @@ def process_excel(excel_files: list, input_f: Path):
     dfs = []
     for f in excel_files:
         df = pd.read_excel(f, index_col=0)
-        df["type"] = f.name.split(".")[0]
+        df["program"] = f.name.split(".")[0]
         dfs.append(df)
 
     # Merge datasets
@@ -32,7 +32,7 @@ def process_excel(excel_files: list, input_f: Path):
     # Reindex and rename columns
     pubs.index = range(0, len(pubs))
     pubs.index.name = "reference_id"
-    pubs.columns = ["grant_id", "reference", "type"]
+    pubs.columns = ["grant_id", "reference", "program"]
 
     # Write unique references to files
     logger.debug("Writing cleaned publication data to CSV")
