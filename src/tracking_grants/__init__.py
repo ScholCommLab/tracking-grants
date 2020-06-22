@@ -51,7 +51,7 @@ matched_articles_f = data_dir / "interim/reference_match_output.json"
 altmetric_f = data_dir / "interim/altmetric.json"
 
 # additional metadata from Crossref
-cr_metadata_f = data_dir / "interim/cr_metadata.csv"
+cr_metadata_f = data_dir / "interim/cr_metadata.json"
 
 # unpaywall data
 unpaywall_f = data_dir / "interim/unpaywall.csv"
