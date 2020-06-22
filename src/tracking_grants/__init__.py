@@ -12,7 +12,14 @@ load_dotenv(find_dotenv())
 
 # Plotting style
 sns.set_style("darkgrid")
-sns.set(rc={"figure.figsize": (8, 5)})
+sns.set(
+    rc={
+        "font.family": "sans-serif",
+        "font.size": 16.0,
+        "text.usetex": False,
+        "figure.figsize": (11.69, 8.27),
+    }
+)
 
 # Load email address
 tool_name = os.getenv("TOOL_NAME")
@@ -36,7 +43,7 @@ data_dir = project_dir / "data"
 # Raw data (collected from CDMRP database)
 # ----------------------------------------
 
-input_folder =  data_dir / "raw" # contains all CSVs
+input_folder = data_dir / "raw"  # contains all CSVs
 
 # Interm files (Created by this package)
 # --------------------------------------
@@ -45,7 +52,7 @@ input_folder =  data_dir / "raw" # contains all CSVs
 one_ref_per_line = data_dir / "interim/one_ref_per_line.txt"
 
 # output of the reference matcher
-matched_articles_f = data_dir / "interim/reference_match_output.json" 
+matched_articles_f = data_dir / "interim/reference_match_output.json"
 
 # response from Altmetric.com
 altmetric_f = data_dir / "interim/altmetric.json"
@@ -62,7 +69,7 @@ wos_f = data_dir / "external/wos.csv"
 
 # Processed files (final files used for analysis)
 # -----------------------------------------------
-references_f = data_dir / "processed/references.csv" 
+references_f = data_dir / "processed/references.csv"
 articles_f = data_dir / "processed/articles.csv"
 metrics_f = data_dir / "processed/metrics.csv"
 
