@@ -5,12 +5,18 @@ import os
 from dotenv import load_dotenv, find_dotenv
 import seaborn as sns
 
-# Load configuration
+# =======================
+# Load user configuration
+# =======================
 load_dotenv(find_dotenv())
 
 # Plotting style
 sns.set_style("darkgrid")
 sns.set(rc={"figure.figsize": (8, 5)})
+
+# Load email address
+tool_name = os.getenv("TOOL_NAME")
+email = os.getenv("EMAIL")
 
 # Configure altmetric key
 altmetric_api_key = os.getenv("ALTMETRIC_API_KEY")
@@ -21,25 +27,47 @@ if not altmetric_api_key:
 else:
     altmetric_call_limit = 10
 
+# ===========
 # Directories
+# ===========
 project_dir = Path(__file__).resolve().parents[2]
 data_dir = project_dir / "data"
 
-# Raw data from CDMRP
-input_folder = data_dir / os.getenv("INPUT_FOLDER")
+# Raw data (collected from CDMRP database)
+# ----------------------------------------
 
-# Temporary files
-one_ref_per_line = data_dir / os.getenv("INPUT_FOLDER")
-crossref_f = data_dir / os.getenv("CROSSREF")
-altmetric_f = data_dir / os.getenv("ALTMETRIC")
-wos_f = data_dir / os.getenv("WOS")
+input_folder =  data_dir / "raw" # contains all CSVs
 
-# Processed files
-references_f = data_dir / os.getenv("REFERENCES")
-articles_f = data_dir / os.getenv("ARTICLES")
-metrics_f = data_dir / os.getenv("METRICS")
+# Interm files (Created by this package)
+# --------------------------------------
+
+# one reference per line in a .txt
+one_ref_per_line = data_dir / "interim/one_ref_per_line.txt"
+
+# output of the reference matcher
+matched_articles_f = data_dir / "interim/reference_match_output.json" 
+
+# response from Altmetric.com
+altmetric_f = data_dir / "interim/altmetric.json"
+
+# additional metadata from Crossref
+cr_metadata_f = data_dir / "interim/cr_metadata.csv"
+
+# unpaywall data
+unpaywall_f = data_dir / "interim/unpaywall.csv"
+
+# External files (gathered externally)
+# ------------------------------------
+wos_f = data_dir / "external/wos.csv"
+
+# Processed files (final files used for analysis)
+# -----------------------------------------------
+references_f = data_dir / "processed/references.csv" 
+articles_f = data_dir / "processed/articles.csv"
+metrics_f = data_dir / "processed/metrics.csv"
 
 # External software
+# -----------------
 reference_matcher = (
     project_dir / "crossref/search-based-ref-matching-1.1-jar-with-dependencies.jar"
 )
