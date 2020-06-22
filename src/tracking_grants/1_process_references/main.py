@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from military_grants.utils.logging import logger
+from tracking_grants.utils.logging import logger
 
 from .export_references import run as export_refs
 from .match_dois import run as match_dois

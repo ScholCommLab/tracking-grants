@@ -5,9 +5,9 @@ from ratelimit import limits, sleep_and_retry
 from tqdm.auto import tqdm
 import json
 
-from military_grants import altmetric_f, articles_f
-from military_grants import altmetric_api_key, altmetric_call_limit
-from military_grants.utils.logging import logger
+from tracking_grants import altmetric_f, articles_f
+from tracking_grants import altmetric_api_key, altmetric_call_limit
+from tracking_grants.utils.logging import logger
 
 
 @sleep_and_retry

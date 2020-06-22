@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import pandas as pd
-from military_grants.utils.logging import logger
-from military_grants import references_f, crossref_f, articles_f
+from tracking_grants.utils.logging import logger
+from tracking_grants import references_f, crossref_f, articles_f
 
 
 def export_articles(references_f, matches_f, articles_f):

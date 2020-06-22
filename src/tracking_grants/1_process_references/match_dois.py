@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import subprocess
 
-from military_grants import crossref_f, one_ref_per_line
-from military_grants import reference_matcher
-from military_grants.utils.logging import logger
+from tracking_grants import crossref_f, one_ref_per_line
+from tracking_grants import reference_matcher
+from tracking_grants.utils.logging import logger
 
 
 def match_refs_with_dois(input_f, output_f):

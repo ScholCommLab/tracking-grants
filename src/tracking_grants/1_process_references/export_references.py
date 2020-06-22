@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 
-from military_grants import one_ref_per_line, references_f
-from military_grants.utils.logging import logger
+from tracking_grants import one_ref_per_line, references_f
+from tracking_grants.utils.logging import logger
 
 
 def process_input(input_f, references_f):

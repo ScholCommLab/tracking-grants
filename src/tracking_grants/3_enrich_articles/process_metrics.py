@@ -2,8 +2,8 @@
 import json
 
 import pandas as pd
-from military_grants import altmetric_f, metrics_f, wos_f
-from military_grants.utils.logging import logger
+from tracking_grants import altmetric_f, metrics_f, wos_f
+from tracking_grants.utils.logging import logger
 
 
 def process_metrics(altmetric_f, wos_f, metrics_f):

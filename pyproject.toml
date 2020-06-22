@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "military-grants"
+name = "tracking-grants"
 version = "0.1.0"
 description = ""
 authors = ["Asura Enkhbayar <asura.enkhbayar@gmail.com>"]
 packages = [
-    { include = "military_grants",  from = "src"},
+    { include = "tracking_grants",  from = "src"},
 ]
 
 [tool.poetry.dependencies]
@@ -30,12 +30,12 @@ coverage = "^5.0.3"
 ipykernel = "^5.1.4"
 
 [tool.poetry.scripts]
-preprocessing = "military_grants.preprocessing.main:run_all"
-references = "military_grants.process_references.main:run_all"
-articles = "military_grants.process_articles.main:run_all"
-metrics = "military_grants.collect_metrics.main:run_all"
-reports = "military_grants.reports.main:run_all"
-all = "military_grants.__main__:run"
+preprocessing = "tracking_grants.preprocessing.main:run_all"
+references = "tracking_grants.process_references.main:run_all"
+articles = "tracking_grants.process_articles.main:run_all"
+metrics = "tracking_grants.collect_metrics.main:run_all"
+reports = "tracking_grants.reports.main:run_all"
+all = "tracking_grants.__main__:run"
 
 [build-system]
 requires = ["poetry>=0.12"]

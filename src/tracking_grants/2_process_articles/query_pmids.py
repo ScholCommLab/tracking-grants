@@ -6,8 +6,8 @@ import pandas as pd
 import requests
 from tqdm.auto import tqdm
 
-from military_grants import articles_f
-from military_grants.utils.logging import logger
+from tracking_grants import articles_f
+from tracking_grants.utils.logging import logger
 
 
 class Eutils:

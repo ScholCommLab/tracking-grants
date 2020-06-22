@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from military_grants.utils.logging import logger
+from tracking_grants.utils.logging import logger
 
 from .collect_metrics.main import run_all as metrics
 from .preprocessing.main import run_all as preprocessing
