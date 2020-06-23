@@ -25,8 +25,9 @@ sns.set(
 tool_name = os.getenv("TOOL_NAME")
 email = os.getenv("EMAIL")
 
-# Configure altmetric key
+# API keys
 altmetric_api_key = os.getenv("ALTMETRIC_API_KEY")
+ncbi_api_key = os.getenv("NCBI_API_KEY")
 
 # Altmetric call limit
 if not altmetric_api_key:
