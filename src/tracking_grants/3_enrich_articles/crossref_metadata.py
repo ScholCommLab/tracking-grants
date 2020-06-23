@@ -11,11 +11,11 @@ from tracking_grants.utils.logging import logger
 
 @sleep_and_retry
 @limits(calls=10, period=1)
-def query_crossref(cr, dois):
+def call_api(cr, dois):
     return cr.works(dois)
 
 
-def main(articles_f, cr_metadata_f):
+def query_crossref(articles_f, cr_metadata_f):
     # load articles
     articles = pd.read_csv(articles_f, index_col="article_id")
 
@@ -30,7 +30,7 @@ def main(articles_f, cr_metadata_f):
 
     results = []
     for ix in tqdm(range(len(r) - 1), total=len(r) - 1, desc="Querying Crossref"):
-        response = query_crossref(cr, dois[r[ix] : r[ix + 1]])
+        response = call_api(cr, dois[r[ix] : r[ix + 1]])
         results.extend(response)
 
     with open(cr_metadata_f, "w") as f:
@@ -89,10 +89,16 @@ def process_crossref(cr_metadata_f, articles_f):
 
 
 def run():
-    print("hello")
     if not cr_metadata_f.exists():
         logger.info("\tCollecting Crossref metadata")
-        main(articles_f, cr_metadata_f)
-        process_crossref(articles_f, cr_metadata_f)
+        query_crossref(articles_f, cr_metadata_f)
     else:
         logger.info("\tSkipped: Crossref metadata has been collected already.")
+
+    articles = pd.read_csv(articles_f, index_col="article_id", nrows=5)
+
+    if "authors_count" not in articles.columns:
+        logger.info("\tProcessing Crossref metadata")
+        process_crossref(cr_metadata_f, articles_f)
+    else:
+        logger.info("\tSkipped: Crossref metadata has been processed already.")
