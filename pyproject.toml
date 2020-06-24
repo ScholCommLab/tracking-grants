@@ -33,11 +33,11 @@ ipywidgets = "^7.5.1"
 [tool.poetry.scripts]
 all = "tracking_grants.__main__:run"
 
-preprocessing = "tracking_grants.preprocessing.main:run_all"
-references = "tracking_grants.process_references.main:run_all"
-articles = "tracking_grants.process_articles.main:run_all"
-metrics = "tracking_grants.collect_metrics.main:run_all"
-reports = "tracking_grants.reports.main:run_all"
+preprocessing = "tracking_grants.0_preprocessing.main:run_all"
+references = "tracking_grants.1_match_references.main:run_all"
+articles = "tracking_grants.2_process_articles.main:run_all"
+metrics = "tracking_grants.3_enrich_articles.main:run_all"
+reports = "tracking_grants.4_reports.main:run_all"
 
 cr_metadata = "tracking_grants.3_enrich_articles.crossref_metadata:run"
 altmetrics = "tracking_grants.3_enrich_articles.altmetrics:run"
