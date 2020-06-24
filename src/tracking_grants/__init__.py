@@ -64,6 +64,7 @@ cr_metadata_f = data_dir / "interim/cr_metadata.json"
 # unpaywall data
 unpaywall_f = data_dir / "interim/unpaywall.csv"
 
+
 # External files (gathered externally)
 # ------------------------------------
 wos_f = data_dir / "external/wos.csv"
@@ -73,6 +74,7 @@ wos_f = data_dir / "external/wos.csv"
 references_f = data_dir / "processed/references.csv"
 articles_f = data_dir / "processed/articles.csv"
 metrics_f = data_dir / "processed/metrics.csv"
+trials_f = data_dir / "processed/trials.csv"
 
 # External software
 # -----------------
