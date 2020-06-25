@@ -55,6 +55,9 @@ one_ref_per_line = data_dir / "interim/one_ref_per_line.txt"
 # output of the reference matcher
 matched_articles_f = data_dir / "interim/reference_match_output.json"
 
+# PMIDs
+pmid_f = data_dir / "interim/pmids.csv"
+
 # response from Altmetric.com
 altmetric_f = data_dir / "interim/altmetric.json"
 
