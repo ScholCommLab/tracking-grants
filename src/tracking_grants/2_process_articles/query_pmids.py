@@ -40,7 +40,7 @@ class Eutils:
         except aiohttp.ClientError as e:
             logger.error(
                 "aiohttp exception for %s [%s]: %s",
-                params['term'],
+                params["term"],
                 getattr(e, "status", None),
                 getattr(e, "message", None),
             )
@@ -69,7 +69,9 @@ class Eutils:
                 getattr(e, "status", None),
                 getattr(e, "message", None),
             )
-            return None, None, None
+            ts = datetime.now().isoformat()
+            text = str(e)
+            return None, ts, text
         else:
             if "PhraseNotFound" not in text:
                 count = re.search(COUNT_REGEX, text)
@@ -88,7 +90,7 @@ class Eutils:
 
     async def run(self, dois, writer):
         connector = aiohttp.TCPConnector(limit=1)
-        timeout = aiohttp.ClientTimeout(total=1.1 * 4 * len(dois) / 10)
+        timeout = aiohttp.ClientTimeout(total=None)
         async with aiohttp.ClientSession(
             connector=connector, timeout=timeout
         ) as session:
@@ -103,40 +105,39 @@ class Eutils:
                 await t
 
 
-def query_pmids(articles_f, pmid_f):
-    articles = pd.read_csv(articles_f)
+def query_pmids(dois, pmid_f):
+    logger.info("\tEnriching articles with Pubmed IDs.")
+    eutils = Eutils(tool_name, email, ncbi_api_key)
 
-    if not pmid_f.exists():
-        with pmid_f.open("w") as f:
-            fieldnames = ["DOI", "pmid", "response", "ts"]
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
+    with pmid_f.open("a") as f:
+        writer = csv.writer(f)
 
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(eutils.run(dois, writer))
+
+
+def process_pmids(pmid_f):
     pmids = pd.read_csv(pmid_f)
-    existing_dois = set(pmids.DOI.tolist())
 
-    dois = articles.DOI.unique().tolist()
-    dois = list(set(dois).difference(existing_dois))
+    pmids["rate_limited"] = pmids.response.str.contains("API rate limit exceeded")
+    pmids["errors"] = pmids.response.isna()
+    pmids["recrawl"] = pmids.errors | pmids.rate_limited
 
-    if len(dois) == 0:
-        logger.info("\tAll DOIs have been queried already.")
-        return None
-    else:
-        logger.info("\tEnriching articles with Pubmed IDs.")
-        eutils = Eutils(tool_name, email, ncbi_api_key)
+    pmids["ts"] = pd.to_datetime(pmids["ts"])
+    pmids = pmids.sort_values("ts").drop_duplicates("DOI", keep="last")
+    pmids.to_csv(pmid_f, index=False)
 
-        with pmid_f.open("a") as f:
-            writer = csv.writer(f)
-
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(eutils.run(dois, writer))
+    queried_dois = pmids.DOI.tolist()
+    recrawl_dois = pmids[pmids["recrawl"]].DOI.unique().tolist()
+    return list(set(queried_dois).difference(recrawl_dois))
 
 
-def process_pmids(articles_f, pmid_f):
+def merge_pmids(articles_f, pmid_f):
     articles = pd.read_csv(articles_f)
-    articles["pmid"] = None
-
     pmids = pd.read_csv(pmid_f)
+
+    if "pmid" in articles.columns:
+        articles = articles.drop(columns=["pmid"])
 
     articles = articles.merge(
         pmids[["DOI", "pmid"]], left_on="DOI", right_on="DOI", how="left"
@@ -145,10 +146,25 @@ def process_pmids(articles_f, pmid_f):
 
 
 def run():
-    articles = pd.read_csv(articles_f, nrows=5)
-    if "pmid" not in articles.columns:
-        query_pmids(articles_f, pmid_f)
-        logger.info("\tProcessing the NCBI responses and merging PMIDs.")
-        process_pmids(articles_f, pmid_f)
+    articles = pd.read_csv(articles_f)
+    all_dois = articles.DOI.unique().tolist()
+
+    if not pmid_f.exists():
+        with pmid_f.open("w") as f:
+            fieldnames = ["DOI", "pmid", "response", "ts"]
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
     else:
-        logger.info("\tSkipped: Dataset already contains pmid columns.")
+        done_dois = process_pmids(pmid_f)
+
+    missing_dois = list(set(all_dois).difference(set(done_dois)))
+
+    if len(missing_dois) == 0:
+        logger.info("\tAll DOIs have been queried already.")
+    else:
+        logger.info("\tProcessing the NCBI responses.")
+        query_pmids(missing_dois, pmid_f)
+        done_dois = process_pmids(pmid_f)
+
+    logger.info("\tMerging PMIDs into articles dataframe.")
+    merge_pmids(articles_f, pmid_f)
