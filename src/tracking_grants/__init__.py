@@ -75,6 +75,7 @@ wos_f = data_dir / "external/wos.csv"
 # Processed files (final files used for analysis)
 # -----------------------------------------------
 references_f = data_dir / "processed/references.csv"
+awards_f = data_dir / "processed/awards.csv"
 articles_f = data_dir / "processed/articles.csv"
 metrics_f = data_dir / "processed/metrics.csv"
 trials_f = data_dir / "processed/trials.csv"
