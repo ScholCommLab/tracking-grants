@@ -1,6 +1,13 @@
 import pandas as pd
 
-from tracking_grants import articles_f, references_f, wos_f, altmetric_f, trials_f, awards_f
+from tracking_grants import (
+    articles_f,
+    references_f,
+    wos_f,
+    altmetric_f,
+    trials_f,
+    awards_f,
+)
 
 
 def load_references():
@@ -8,7 +15,54 @@ def load_references():
 
 
 def load_awards():
-    return pd.read_csv(awards_f)
+    def research_topic(s):
+        if pd.notna(s):
+            primary_topic = None
+            secondary_topic = None
+
+            if "Secondary: " in s:
+                splits = s.split("Secondary: ")
+                secondary_topic = splits[-1]
+                s = splits[0:-1][0]
+            if "Primary: " in s:
+                splits = s.split("Primary: ")
+                primary_topic = splits[-1]
+            return primary_topic, secondary_topic
+        else:
+            return None, None
+
+    def currency_to_int(s):
+        s = s.replace("$", "").replace(",", "")
+        return int(float(s))
+
+    awards = pd.read_csv(awards_f)
+    awards = awards.rename(
+        columns={
+            "Award Amount": "award_amount",
+            "Fiscal Year": "award_year",
+            "Mechanism": "type",
+            "Proposal Number": "grant_id",
+            "Award Number": "award_number",
+            "Program": "program",
+        }
+    )
+    awards[["primary_topic", "secondary_topic"]] = pd.DataFrame(
+        awards["Research Topic"].map(research_topic).tolist()
+    )
+    awards = awards.drop(columns=["Research Topic"])
+    awards["award_amount"] = awards["award_amount"].map(currency_to_int)
+
+    export_cols = [
+        "award_id",
+        "grant_id",
+        "award_amount",
+        "award_year",
+        "type",
+        "program",
+        "primary_topic",
+        "secondary_topic",
+    ]
+    return awards[export_cols]
 
 
 # Loading external files
@@ -94,7 +148,6 @@ def load_metrics():
         right_index=True,
         how="left",
     )
-
 
     return articles
 
