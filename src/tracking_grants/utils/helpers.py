@@ -140,9 +140,25 @@ def load_altmetrics(keep_metrics=True, keep_dates=False, keep_ids=False):
 
 def load_metrics():
     articles = load_articles()
-
+    altmetrics = load_altmetrics()
+    wos = load_wos()
     trials = load_trials()
 
+    articles = articles.merge(
+        wos,
+        left_on="DOI",
+        right_index=True,
+        how="left",
+    )
+
+    articles = articles.merge(
+        altmetrics,
+        left_on="DOI",
+        right_index=True,
+        how="left",
+    )
+
+    # Add n_trials
     articles = articles.merge(
         trials.doi.value_counts().to_frame("n_trials"),
         left_on="DOI",
@@ -196,4 +212,7 @@ def load_grants():
 
 
 def load_trials():
-    return pd.read_csv(trials_f)
+    trials = pd.read_csv(trials_f)
+    for c in ['BriefTitle', 'NCTId', 'OverallStatus', 'Phase']:
+        trials[c] = trials[c].map(lambda x: eval(x)).map(lambda x: x[0] if len(x) > 0 else None)
+    return trials.drop(columns="Condition")
