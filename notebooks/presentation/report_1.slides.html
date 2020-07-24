@@ -13275,7 +13275,92 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overall-descriptives">Overall descriptives<a class="anchor-link" href="#Overall-descriptives">&#182;</a></h3><p>PCRP (7337), NFRP (624), TSCRP (202)</p>
+<h3 id="Overall-descriptives">Overall descriptives<a class="anchor-link" href="#Overall-descriptives">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">articles</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s2">&quot;Articles&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[206]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Articles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PCRP</th>
+      <td>7434</td>
+    </tr>
+    <tr>
+      <th>NFRP</th>
+      <td>624</td>
+    </tr>
+    <tr>
+      <th>PRORP</th>
+      <td>335</td>
+    </tr>
+    <tr>
+      <th>TSCRP</th>
+      <td>202</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Publications-and-awards-over-years">Publications and awards over years<a class="anchor-link" href="#Publications-and-awards-over-years">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="plot_awards_pubs_over_years.png" alt="plot_awards_pubs_over_years.png"></p>
 
 </div>
@@ -13284,28 +13369,117 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Coverage-of-references-found-in-Crossref">Coverage of references found in Crossref<a class="anchor-link" href="#Coverage-of-references-found-in-Crossref">&#182;</a></h3><p>8,164 references were matched to 6,923 DOIs.</p>
-<p><img src="venn_refs.png" alt="venn_refs.png"></p>
+<h3 id="Reference-matching">Reference matching<a class="anchor-link" href="#Reference-matching">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[225]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">- Total number of references: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">refs</span><span class="p">)</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">- References that were found in Crossref: </span><span class="si">{</span><span class="n">articles</span><span class="o">.</span><span class="n">reference_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">- These references were matched to </span><span class="si">{</span><span class="n">articles</span><span class="o">.</span><span class="n">DOI</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> articles</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">md</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
 
+    </div>
 </div>
 </div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Coverage-of-DOIs-in-the-WoS-and-Twitter">Coverage of DOIs in the WoS and Twitter<a class="anchor-link" href="#Coverage-of-DOIs-in-the-WoS-and-Twitter">&#182;</a></h3><p><img src="venn_metrics.png" alt="venn_metrics.png"></p>
 
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Clinical-Trials">Clinical Trials<a class="anchor-link" href="#Clinical-Trials">&#182;</a></h3><ul>
-<li>How many articles (with DOIs) had clinical trials?</li>
-<li>How many grants had clinical trials?</li>
-<li>Distribution of phases (table?)</li>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[225]:</div>
+
+
+
+<div class="output_markdown rendered_html output_subarea output_execute_result">
+<ul>
+<li>Total number of references: 9525</li>
+<li>References that were found in Crossref: 8595</li>
+<li>These references were matched to 7289 articles</li>
 </ul>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coverage-of-references-found-in-Crossref">Coverage of references found in Crossref<a class="anchor-link" href="#Coverage-of-references-found-in-Crossref">&#182;</a></h3><p><img src="venn_refs.png" alt="venn_refs.png"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coverage-of-DOIs-(n=7289)-in-the-WoS-and-Twitter">Coverage of DOIs (n=7289) in the WoS and Twitter<a class="anchor-link" href="#Coverage-of-DOIs-(n=7289)-in-the-WoS-and-Twitter">&#182;</a></h3><p><img src="venn_metrics.png" alt="venn_metrics.png"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Clinical-Trials">Clinical Trials<a class="anchor-link" href="#Clinical-Trials">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;We found **</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trials</span><span class="p">)</span><span class="si">}</span><span class="s2"> clinical trials** via clinicaltrials.gov.</span>
+
+<span class="s2">These trials were associated with </span><span class="si">{</span><span class="n">trials</span><span class="o">.</span><span class="n">doi</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> articles in our dataset funded by **</span><span class="si">{</span><span class="n">articles</span><span class="p">[</span><span class="n">articles</span><span class="o">.</span><span class="n">DOI</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">trials</span><span class="o">.</span><span class="n">doi</span><span class="p">)]</span><span class="o">.</span><span class="n">grant_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> grants**.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">md</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[230]:</div>
+
+
+
+<div class="output_markdown rendered_html output_subarea output_execute_result">
+<p>We found <strong>301 clinical trials</strong> via clinicaltrials.gov.</p>
+<p>These trials were associated with 231 articles in our dataset funded by <strong>182 grants</strong>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Breakdown-of-trials-(n=301)-by-phases">Breakdown of trials (n=301) by phases<a class="anchor-link" href="#Breakdown-of-trials-(n=301)-by-phases">&#182;</a></h4><p><img src="clinical_trials.png" alt="clinical_trials.png"></p>
 
 </div>
 </div>
@@ -13313,7 +13487,93 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Part-2---Data-on-the-grant-level">Part 2 - Data on the grant level<a class="anchor-link" href="#Part-2---Data-on-the-grant-level">&#182;</a></h2><p>After collecting article-level data we can offer insights on the grant level by aggregating by the IDs.</p>
+<h2 id="Part-2---Data-on-the-grant-level">Part 2 - Data on the grant level<a class="anchor-link" href="#Part-2---Data-on-the-grant-level">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Number-of-awards-per-program">Number of awards per program<a class="anchor-link" href="#Number-of-awards-per-program">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[239]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grants</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">&quot;grant_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s2">&quot;Awards&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[239]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Awards</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PCRP</th>
+      <td>1976</td>
+    </tr>
+    <tr>
+      <th>NFRP</th>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>PRORP</th>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>TSCRP</th>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Number-of-publications-per-grant-program">Number of publications per grant program<a class="anchor-link" href="#Number-of-publications-per-grant-program">&#182;</a></h3><p><img src="pubs_per_grant.png" alt="pubs_per_grant.png"></p>
 
 </div>
 </div>
@@ -13321,10 +13581,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Slide---Overview-of-grants">Slide - Overview of grants<a class="anchor-link" href="#Slide---Overview-of-grants">&#182;</a></h3><ul>
-<li>How many per research program?</li>
-<li>Average size of awards (publications, award sizes)</li>
-</ul>
+<h3 id="Award-amount-per-grant-program">Award amount per grant program<a class="anchor-link" href="#Award-amount-per-grant-program">&#182;</a></h3><p><img src="dollars_per_grant.png" alt="dollars_per_grant.png"></p>
 
 </div>
 </div>
@@ -13332,7 +13589,23 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Slide---Measuring-grant-outputs">Slide - Measuring grant outputs<a class="anchor-link" href="#Slide---Measuring-grant-outputs">&#182;</a></h3><p>Boxplots for various metrics: citations, twitter, news, ...</p>
+<h3 id="Award-size-vs-number-of-publications-(without-Consortia-Awards)">Award size vs number of publications (without Consortia Awards)<a class="anchor-link" href="#Award-size-vs-number-of-publications-(without-Consortia-Awards)">&#182;</a></h3><p><img src="grant_percentiles.png" alt="grant_percentiles.png"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Number-of-publication-by-award-types">Number of publication by award types<a class="anchor-link" href="#Number-of-publication-by-award-types">&#182;</a></h3><p><img src="pubs_per_award_type.png" alt="pubs_per_award_type.png"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Award-amount-by-award-types">Award amount by award types<a class="anchor-link" href="#Award-amount-by-award-types">&#182;</a></h3><p><img src="dollars_per_award_type.png" alt="dollars_per_award_type.png"></p>
 
 </div>
 </div>
@@ -13347,14 +13620,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overview-of-grants">Overview of grants<a class="anchor-link" href="#Overview-of-grants">&#182;</a></h3><ul>
-<li>How many per research program?</li>
-<li>Average size/distribution of awards<ul>
-<li>Number of Publications</li>
-<li>Award sizes</li>
-</ul>
-</li>
-</ul>
+<h3 id="Measuring-grant-outputs">Measuring grant outputs<a class="anchor-link" href="#Measuring-grant-outputs">&#182;</a></h3><p><img src="metrics.png" alt="metrics.png"></p>
 
 </div>
 </div>
@@ -13362,26 +13628,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Award-Types">Award Types<a class="anchor-link" href="#Award-Types">&#182;</a></h3><ul>
-<li>Break down # of Publications and $ by award type</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Part-4---Not-all-grants-are-the-same">Part 4 - Not all grants are the same<a class="anchor-link" href="#Part-4---Not-all-grants-are-the-same">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Measuring-grant-outputs">Measuring grant outputs<a class="anchor-link" href="#Measuring-grant-outputs">&#182;</a></h3><ul>
-<li>Boxplots for various metrics: citations, twitter, news, ..</li>
-</ul>
+<h3 id="Pairplot-on-the-grant-level">Pairplot on the grant level<a class="anchor-link" href="#Pairplot-on-the-grant-level">&#182;</a></h3><p><img src="pairplots.png" alt="pairplots.png"></p>
 
 </div>
 </div>
@@ -13389,26 +13636,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Pairplot-on-the-grant-level-(3x3-plots)">Pairplot on the grant level (3x3 plots)<a class="anchor-link" href="#Pairplot-on-the-grant-level-(3x3-plots)">&#182;</a></h3><ul>
-<li>Color by award type?</li>
-<li>Size of bubble by funding amount</li>
-<li>3 plots: Citations, Twitter, News, (Clinical trials?)</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Pairplots:">Pairplots:<a class="anchor-link" href="#Pairplots:">&#182;</a></h3><ul>
-<li>Bubbles are grants<ul>
-<li>\$ vs # paper</li>
-<li>\$ vs # citation</li>
-<li>\$ vs # tweet </li>
-</ul>
-</li>
-</ul>
+<h3 id="Outputs-over-award-size">Outputs over award size<a class="anchor-link" href="#Outputs-over-award-size">&#182;</a></h3><p><img src="outputs_per_dollars.png" alt="outputs_per_dollars.png"></p>
 
 </div>
 </div>
