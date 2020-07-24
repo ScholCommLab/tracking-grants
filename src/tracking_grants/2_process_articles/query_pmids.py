@@ -4,7 +4,6 @@ import csv
 import re
 from datetime import datetime
 
-import aiofiles
 import aiohttp
 import pandas as pd
 from throttler import Throttler
@@ -21,7 +20,6 @@ class Eutils:
 
     def __init__(self, tool, email, api_key):
         self.baseurl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-        self.tasks = None
 
         self.tool = tool
         self.email = email
@@ -36,15 +34,16 @@ class Eutils:
                 await asyncio.sleep(0.1)
                 async with session.get(self.baseurl, params=params) as resp:
                     text = await resp.text()
-                    return ts, text
-        except aiohttp.ClientError as e:
+        except (aiohttp.ClientError, aiohttp.http_exceptions.HttpProcessingError,) as e:
             logger.error(
                 "aiohttp exception for %s [%s]: %s",
-                params["term"],
+                doi,
                 getattr(e, "status", None),
                 getattr(e, "message", None),
             )
-            return ts, str(e)
+            ts = datetime.now().isoformat()
+            text = str(e)
+        return ts, text
 
     async def __parse(self, session, doi):
         pmid = None
@@ -60,28 +59,17 @@ class Eutils:
             "term": doi,
         }
 
-        try:
-            ts, text = await self.__fetch(session, params)
-        except (aiohttp.ClientError, aiohttp.http_exceptions.HttpProcessingError,) as e:
-            logger.error(
-                "aiohttp exception for %s [%s]: %s",
-                doi,
-                getattr(e, "status", None),
-                getattr(e, "message", None),
-            )
-            ts = datetime.now().isoformat()
-            text = str(e)
-            return None, ts, text
-        else:
-            if "PhraseNotFound" not in text:
-                count = re.search(COUNT_REGEX, text)
-                if count:
-                    count = int(count.group(1))
-                    # Only return unique matches
-                    if count == 1:
-                        match = re.search(ID_REGEX, text)
-                        if match:
-                            pmid = match.group(1)
+        ts, text = await self.__fetch(session, params)
+
+        if "PhraseNotFound" not in text:
+            count = re.search(COUNT_REGEX, text)
+            if count:
+                count = int(count.group(1))
+                # Only return unique matches
+                if count == 1:
+                    match = re.search(ID_REGEX, text)
+                    if match:
+                        pmid = match.group(1)
         return pmid, ts, text
 
     async def get_pmid(self, session, doi, writer):

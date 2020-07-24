@@ -20,7 +20,7 @@ def api_call(a, doi):
 
 
 def query_altmetric(articles_f, altmetric_f):
-    articles = pd.read_csv(articles_f, index_col="article_id")
+    articles = pd.read_csv(articles_f)
     a = Altmetric(altmetric_api_key)
 
     results = {}

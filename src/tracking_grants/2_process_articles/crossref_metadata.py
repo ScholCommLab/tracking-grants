@@ -86,7 +86,8 @@ def process_crossref(cr_metadata_f, articles_f):
         }
     )
 
-    articles.merge(df, left_on="DOI", right_index=True).to_csv(articles_f)
+    articles = articles.merge(df, left_on="DOI", right_index=True).drop_duplicates()
+    articles.to_csv(articles_f, index=False)
 
 
 def run():
