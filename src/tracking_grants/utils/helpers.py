@@ -144,19 +144,9 @@ def load_metrics():
     wos = load_wos()
     trials = load_trials()
 
-    articles = articles.merge(
-        wos,
-        left_on="DOI",
-        right_index=True,
-        how="left",
-    )
+    articles = articles.merge(wos, left_on="DOI", right_index=True, how="left",)
 
-    articles = articles.merge(
-        altmetrics,
-        left_on="DOI",
-        right_index=True,
-        how="left",
-    )
+    articles = articles.merge(altmetrics, left_on="DOI", right_index=True, how="left",)
 
     # Add n_trials
     articles = articles.merge(
@@ -170,49 +160,41 @@ def load_metrics():
 
 
 def load_grants():
-    award_cols = ["grant_id", "award_amount", "type", "award_year"]
-
-    articles = load_articles()
+    # Remove ref_id, grant_id, and score (!) as the individual references
+    # deposited # might apply to various grants and even contain slightly
+    # different formats for the publications
     metrics = load_metrics()
+    grants = metrics.groupby(["program", "grant_id"]).mean().reset_index()
+
+    # Award metadata
     awards = load_awards()
-
-    # Remove ref_id, grant_id, and score (!) as the individual references deposited might apply to various grants and even contain slightly different formats for the publications
-    grants = load_metrics()
-    grants = grants.groupby(["program", "grant_id"]).mean().reset_index()
-
-    grants = grants.merge(
-        metrics.groupby("grant_id")["DOI"].nunique().to_frame("n_dois"),
-        left_on="grant_id",
-        right_index=True,
-    )
-    grants = grants.merge(
-        articles.groupby("grant_id").created.mean(),
-        left_on="grant_id",
-        right_index=True,
-    )
-    grants = grants.merge(
-        articles.groupby("grant_id").authors_count.mean(),
-        left_on="grant_id",
-        right_index=True,
-    )
+    award_cols = ["grant_id", "award_amount", "type", "award_year"]
     grants = grants.merge(
         awards[award_cols], left_on="grant_id", right_on="grant_id", how="left"
     )
     grants.award_amount = grants.award_amount / 1000000
 
+    # Number of articles
+    grants = grants.merge(
+        metrics.groupby("grant_id")["DOI"].nunique().to_frame("n_dois"),
+        left_on="grant_id",
+        right_index=True,
+    )
+
+    # Sum of COCI citations
     grants = grants.merge(
         metrics.groupby("grant_id")["coci_citations"].sum().to_frame("total_coci"),
         left_on="grant_id",
         right_index=True,
     )
-
     grants.coci_citations = grants.coci_citations.replace(0, np.nan)
-
     return grants
 
 
 def load_trials():
     trials = pd.read_csv(trials_f)
-    for c in ['BriefTitle', 'NCTId', 'OverallStatus', 'Phase']:
-        trials[c] = trials[c].map(lambda x: eval(x)).map(lambda x: x[0] if len(x) > 0 else None)
+    for c in ["BriefTitle", "NCTId", "OverallStatus", "Phase"]:
+        trials[c] = (
+            trials[c].map(lambda x: eval(x)).map(lambda x: x[0] if len(x) > 0 else None)
+        )
     return trials.drop(columns="Condition")
