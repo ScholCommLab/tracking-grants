@@ -37,27 +37,35 @@ def load_awards():
         return int(float(s))
 
     awards = pd.read_csv(awards_f)
-    awards = awards.rename(
-        columns={
-            "Award Amount": "award_amount",
-            "Fiscal Year": "award_year",
-            "Mechanism": "type",
-            "Proposal Number": "grant_id",
-            "Award Number": "award_number",
-            "Program": "program",
-        }
-    )
+
+    # Process research topics
     awards[["primary_topic", "secondary_topic"]] = pd.DataFrame(
         awards["Research Topic"].map(research_topic).tolist()
     )
     awards = awards.drop(columns=["Research Topic"])
+
+    # Rename columns
+    awards = awards.rename(
+        columns={
+            "Award Amount": "award_amount",
+            "Award Number": "award_id",
+            "Fiscal Year": "award_year",
+            "Mechanism": "type",
+            "Proposal Number": "proposal_id",
+            "Proposal Title": "proposal_title",
+            "Program": "program",
+        }
+    )
+
+    # Process award amount
     awards["award_amount"] = awards["award_amount"].map(currency_to_int)
 
     export_cols = [
         "award_id",
-        "grant_id",
         "award_amount",
         "award_year",
+        "proposal_id",
+        "proposal_title",
         "type",
         "program",
         "primary_topic",
@@ -155,6 +163,8 @@ def load_metrics():
         right_index=True,
         how="left",
     )
+
+    
 
     return articles
 

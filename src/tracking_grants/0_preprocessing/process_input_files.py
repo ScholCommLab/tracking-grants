@@ -53,11 +53,13 @@ def process_awards(input_files, output_f):
     # Load excel files
     dfs = []
     for f in input_files:
-        df = pd.read_csv(f, index_col=0)
+        df = pd.read_csv(f)
         dfs.append(df)
 
     # Merge datasets
     awards = pd.concat(dfs)
+
+    print(awards.columns)
 
     # Drop duplicate entries
     logger.debug(f"Duplicate entries in dataset: {sum(awards.duplicated())}")
